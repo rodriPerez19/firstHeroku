@@ -17,13 +17,15 @@ let users = ["bart", "lisa", "homero", "marge"];
 
 app.use(cors());
 app.use(methodOverride());
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 app.get("/users", (req, res)=>{
    res.send(users);
 });
 
-app.post("/user/create/:nombre", (req, res)=>{
-   users.push(req.params.nombre);
+app.post("/user/create/", (req, res)=>{
+   users.push(req.body.nombre);
    res.send("usuario creado");
 });
 
